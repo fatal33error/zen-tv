@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Check, Play, Monitor, Activity, Film, Smartphone, Tv, 
   ChevronDown, Zap, Lock, Star, Globe, MonitorPlay,
-  PlayCircle, Mail
+  PlayCircle, Mail, ShoppingCart
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -19,7 +19,7 @@ function cn(...inputs: ClassValue[]) {
 // --------------------------------------------------------
 function Hero() {
   return (
-    <section className="relative pb-20 lg:pb-32 overflow-hidden pt-12 lg:pt-24">
+    <section className="relative pb-20 lg:pb-32 overflow-hidden pt-32 lg:pt-24">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-cyan/10 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="container mx-auto px-6 relative z-10">
@@ -251,94 +251,121 @@ function Marquee() {
 // 5. Pricing & Subscription
 // --------------------------------------------------------
 function Pricing() {
+  const plans = [
+    {
+      name: "1-Month Pass",
+      price: "$9.99",
+      period: "mo",
+      features: ["Full Channel Access", "Complete VOD Library", "Standard Support"],
+      buttonText: "Select 1-Month",
+      highlight: false,
+    },
+    {
+      name: "3-Month Pass",
+      price: "$24.99",
+      period: "3mo",
+      features: ["Full Channel Access", "Complete VOD Library", "Standard Support"],
+      buttonText: "Select 3-Month",
+      highlight: false,
+    },
+    {
+      name: "6-Month Pass",
+      price: "$44.99",
+      period: "6mo",
+      features: ["Full Channel Access", "Complete VOD Library", "Standard Support", "25% Savings"],
+      buttonText: "Get Started",
+      highlight: false,
+    },
+    {
+      name: "12-Month Pass",
+      price: "$79.99",
+      period: "yr",
+      subtitle: "Just $6.66 per month",
+      badge: "Best Value - Save 40%",
+      features: ["Full Channel Access", "Complete VOD Library", "Priority 24/7 Support", "2 Simultaneous Devices"],
+      buttonText: "Get 12-Month Pass",
+      highlight: true,
+    },
+  ];
+
   return (
-    <section id="pricing" className="py-24 relative">
-      <div className="container mx-auto px-6">
+    <section id="pricing" className="py-24 relative z-10 bg-zinc-950">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-cyan/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl lg:text-5xl font-heading font-bold mb-6 text-white">Choose Your <span className="bg-clip-text text-transparent bg-brand-gradient">zen+ TV Pass</span></h2>
+          <motion.h2 initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} className="text-4xl lg:text-5xl font-heading font-bold mb-4 text-white">
+            Choose Your <span className="bg-clip-text text-transparent bg-brand-gradient">zen+ TV Pass</span>
+          </motion.h2>
+          <motion.p initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:0.1}} className="text-xl text-zinc-400 font-body">
+            Simple, transparent pricing. No hidden fees. Cancel anytime.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
-          {/* Card 1: 1 Month */}
-          <div className="rounded-3xl border border-white/10 bg-zinc-900/50 p-8 backdrop-blur-sm transition-transform hover:-translate-y-2 flex flex-col h-full">
-            <h3 className="text-2xl font-heading font-bold mb-2 text-white">The Tester</h3>
-            <p className="text-zinc-400 text-sm mb-6">1-Month Pass</p>
-            <div className="mb-8">
-              <span className="text-5xl font-bold text-white">$12</span>
-              <span className="text-zinc-500">/mo</span>
-            </div>
-            <ul className="space-y-4 mb-8 flex-1">
-              {['20,000+ Live Channels', '100,000+ VODs', 'Standard Support'].map(item => (
-                <li key={item} className="flex items-center gap-3 text-zinc-300 font-medium text-sm">
-                  <Check className="w-4 h-4 text-zinc-500 flex-shrink-0" /> {item}
-                </li>
-              ))}
-            </ul>
-            <button className="w-full py-4 rounded-xl font-bold text-white border border-white/20 bg-white/5 hover:bg-white/10 transition-colors">Ghost</button>
-          </div>
-
-          {/* Card 2: 3 Months */}
-          <div className="rounded-3xl border border-white/10 bg-zinc-900/50 p-8 backdrop-blur-sm transition-transform hover:-translate-y-2 flex flex-col h-full">
-            <h3 className="text-2xl font-heading font-bold mb-2 text-white">The Fan</h3>
-            <p className="text-zinc-400 text-sm mb-6">3-Month Pass</p>
-            <div className="mb-8">
-              <span className="text-5xl font-bold text-white">$29</span>
-              <span className="text-zinc-500">/total</span>
-            </div>
-            <ul className="space-y-4 mb-8 flex-1">
-              {['All base features', '10% Savings', 'Free EPG Guide'].map(item => (
-                <li key={item} className="flex items-center gap-3 text-zinc-300 font-medium text-sm">
-                  <Check className="w-4 h-4 text-brand-cyan flex-shrink-0" /> {item}
-                </li>
-              ))}
-            </ul>
-            <button className="w-full py-4 rounded-xl font-bold text-white border border-white/20 bg-white/5 hover:bg-white/10 transition-colors">Ghost</button>
-          </div>
-          
-          {/* Card 3: 6 Months */}
-          <div className="rounded-3xl border border-white/10 bg-zinc-900/50 p-8 backdrop-blur-sm transition-transform hover:-translate-y-2 flex flex-col h-full group">
-            <h3 className="text-2xl font-heading font-bold mb-2 text-white">The Pro</h3>
-            <p className="text-zinc-400 text-sm mb-6">6-Month Pass</p>
-            <div className="mb-8">
-              <span className="text-5xl font-bold text-white">$49</span>
-              <span className="text-zinc-500">/total</span>
-            </div>
-            <ul className="space-y-4 mb-8 flex-1">
-              {['All previous features', '20% Savings', 'Priority Support'].map(item => (
-                <li key={item} className="flex items-center gap-3 text-zinc-300 font-medium text-sm">
-                  <Check className="w-4 h-4 text-brand-cyan flex-shrink-0" /> {item}
-                </li>
-              ))}
-            </ul>
-            <button className="w-full py-4 rounded-xl font-bold text-white border border-brand-cyan/50 bg-white/5 group-hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all">Ghost</button>
-          </div>
-
-          {/* Card 4: 12-Month - The Anchor */}
-          <div className="relative rounded-3xl lg:scale-105 z-10 p-[2px] overflow-hidden shadow-[0_0_50px_rgba(0,242,254,0.15)] group transition-transform hover:-translate-y-2 flex flex-col h-full">
-            <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_340deg,#00f2fe_360deg)] animate-[spin_4s_linear_infinite]" />
-            <div className="absolute inset-0 bg-[conic-gradient(from_180deg,transparent_0_340deg,#4facfe_360deg)] animate-[spin_4s_linear_infinite]" />
-            <div className="relative bg-zinc-950 rounded-[22px] h-full w-full p-8 flex flex-col">
-              <div className="absolute top-0 right-6 transform -translate-y-1/2">
-                <span className="bg-brand-gradient text-zinc-950 text-xs font-bold px-4 py-1.5 rounded-full shadow-[0_4px_14px_rgba(0,242,254,0.5)]">🔥 Most Popular / Save 40%</span>
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6 items-end">
+          {plans.map((plan, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className={`relative rounded-3xl p-8 border flex flex-col min-h-[480px] ${
+                plan.highlight
+                  ? "bg-zinc-900/80 backdrop-blur-2xl border-transparent shadow-[0_0_50px_rgba(0,242,254,0.15)] transform lg:-translate-y-4 lg:scale-[1.03] z-10"
+                  : "bg-zinc-900/40 backdrop-blur-xl border-white/10 transition-all hover:-translate-y-2 hover:bg-zinc-900/60 hover:shadow-xl mt-4 lg:mt-0"
+              }`}
+            >
+              {plan.highlight && (
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-b from-brand-cyan to-green-500 rounded-3xl -z-10 p-[2px]">
+                    <div className="absolute inset-0 bg-zinc-900 rounded-[calc(1.5rem-2px)] -z-10" />
+                  </div>
+                  <div className="absolute -top-4 inset-x-0 flex justify-center">
+                    <motion.div 
+                      animate={{ y: [0, -4, 0] }} 
+                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                      className="bg-gradient-to-r from-brand-cyan to-green-400 text-zinc-950 text-xs font-bold px-5 py-1.5 rounded-full whitespace-nowrap shadow-[0_4px_20px_rgba(0,242,254,0.4)]"
+                    >
+                      {plan.badge}
+                    </motion.div>
+                  </div>
+                </>
+              )}
+              <div className="mb-4">
+                <h3 className={`text-2xl font-heading font-bold mb-2 ${plan.highlight ? 'text-brand-cyan' : 'text-zinc-100'}`}>{plan.name}</h3>
               </div>
-              <h3 className="text-2xl font-heading font-bold mb-2 text-white">The Ultimate</h3>
-              <p className="text-zinc-400 text-sm mb-6">12-Month Pass</p>
-              <div className="mb-8">
-                <span className="text-5xl font-bold text-transparent bg-clip-text bg-brand-gradient">$79</span>
-                <span className="text-zinc-500">/total</span>
+              <div className={`mb-${plan.subtitle ? '2' : '8'}`}>
+                <span className="text-5xl font-bold text-white">{plan.price}</span>
+                <span className="text-zinc-400 text-sm font-medium">/{plan.period}</span>
               </div>
-              <ul className="space-y-4 mb-8 flex-1">
-                {['Premium Server Priority', 'Advanced Anti-Freeze Tech', 'Free VPN Included'].map(item => (
-                  <li key={item} className="flex items-center gap-3 text-zinc-100 font-semibold text-sm">
-                    <Check className="w-4 h-4 text-brand-cyan flex-shrink-0" /> {item}
+              {plan.subtitle && (
+                <div className="mb-6 text-[#4ade80] text-sm font-bold">
+                  {plan.subtitle}
+                </div>
+              )}
+              <ul className="space-y-4 mb-8 flex-1 mt-4">
+                {plan.features.map((feat, idx) => (
+                  <li key={idx} className={`flex items-center gap-3 text-sm font-medium ${plan.highlight ? 'text-white' : 'text-zinc-300'}`}>
+                    {plan.highlight ? (
+                      <div className="w-2.5 h-2.5 rounded-full bg-brand-cyan flex-shrink-0 shadow-[0_0_10px_rgba(0,242,254,0.5)]" />
+                    ) : (
+                      <Check className="w-4 h-4 flex-shrink-0 text-green-500" />
+                    )}
+                    {feat}
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-4 rounded-xl font-bold text-zinc-950 bg-brand-gradient hover:scale-105 transition-transform shadow-[0_0_20px_rgba(0,242,254,0.3)] mt-auto animate-pulse">
-                Get The Ultimate
+              <button
+                className={`w-full py-4 rounded-full font-bold transition-all mt-auto text-sm ${
+                  plan.highlight
+                    ? "bg-gradient-to-r from-brand-cyan to-green-400 text-zinc-950 hover:scale-105 shadow-[0_0_25px_rgba(0,242,254,0.4)]"
+                    : "bg-white/10 text-white hover:bg-white/20 hover:scale-[1.02]"
+                }`}
+              >
+                {plan.buttonText}
               </button>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -349,103 +376,60 @@ function Pricing() {
 // 6. Interactive Setup Guide
 // --------------------------------------------------------
 function SetupGuide() {
-  const tabs = ['Smart TV', 'Firestick', 'Apple TV', 'Smartphones', 'Windows/Mac'];
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-  const [activeStep, setActiveStep] = useState(1);
-
   const steps = [
-    { num: 1, title: "Choose Plan & Check Inbox", desc: "Select your subscription and receive your M3U/Xtream Codes instantly via email." },
-    { num: 2, title: "Download recommended app", desc: "Install IPTV Smarters, TiviMate, or our official app from your device's store." },
-    { num: 3, title: "Enter credentials and stream instantly", desc: "Login with the provided details and enjoy your unlimited entertainment immediately." }
+    {
+      num: 1,
+      title: "Step 1: Choose Your Plan",
+      desc: "Select the subscription that fits your needs and complete your secure payment.",
+      icon: <ShoppingCart className="w-8 h-8 text-brand-cyan" />,
+      ring: "border-brand-cyan shadow-[0_0_15px_rgba(0,242,254,0.3)]"
+    },
+    {
+      num: 2,
+      title: "Step 2: Check Your Inbox",
+      desc: "Receive your login credentials and personalized M3U link instantly via email.",
+      icon: <Mail className="w-8 h-8 text-[#a855f7]" />,
+      ring: "border-[#a855f7] shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+    },
+    {
+      num: 3,
+      title: "Step 3: Connect & Enjoy",
+      desc: "Download your preferred IPTV player, enter your details, and start streaming zen+ TV immediately.",
+      icon: <PlayCircle className="w-8 h-8 text-[#4ade80]" />,
+      ring: "border-[#4ade80] shadow-[0_0_15px_rgba(74,222,128,0.3)]"
+    }
   ];
 
   return (
-    <section className="py-24 relative bg-zinc-900/20 border-y border-white/5">
-      <div className="container mx-auto px-6">
+    <section className="py-24 relative bg-zinc-950">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-brand-cyan/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl lg:text-5xl font-heading font-bold mb-6 text-white">Setup in Under 5 Minutes.</h2>
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-4xl lg:text-5xl font-heading font-bold mb-4 text-white">
+            Setup in <span className="bg-clip-text text-transparent bg-brand-gradient">Under 5 Minutes</span>
+          </motion.h2>
+          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-zinc-400 text-lg font-body font-medium">
+            Removing the technical friction for new buyers.
+          </motion.p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {tabs.map(tab => (
-            <button 
-              key={tab} 
-              onClick={() => setActiveTab(tab)}
-              className={cn("relative px-6 py-3 rounded-full text-sm font-medium transition-colors", activeTab === tab ? "text-white" : "text-zinc-400 hover:text-white")}
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {steps.map((step, i) => (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              key={step.num} 
+              className="bg-zinc-900/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center flex flex-col items-center hover:-translate-y-2 hover:bg-zinc-900/60 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 group"
             >
-              {activeTab === tab && (
-                <motion.div layoutId="activetab" className="absolute inset-0 bg-white/10 rounded-full border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.05)]" />
-              )}
-              <span className="relative z-10">{tab}</span>
-            </button>
-          ))}
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-center bg-zinc-950 border border-white/10 rounded-3xl p-8 lg:p-12 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-cyan/5 rounded-full blur-[100px] pointer-events-none" />
-          
-          <div className="flex flex-col gap-8 relative z-10">
-            {steps.map(step => (
-              <div 
-                key={step.num} 
-                className={cn("flex gap-6 group cursor-pointer transition-opacity", activeStep === step.num ? "opacity-100" : "opacity-50 hover:opacity-80")}
-                onClick={() => setActiveStep(step.num)}
-              >
-                <div className={cn(
-                  "flex-shrink-0 w-12 h-12 rounded-full border flex items-center justify-center font-heading font-bold text-lg transition-colors",
-                  activeStep === step.num ? "border-brand-cyan bg-brand-cyan text-zinc-950 shadow-[0_0_15px_rgba(0,242,254,0.4)]" : "border-white/20 text-white"
-                )}>
-                  {step.num}
-                </div>
-                <div>
-                  <h4 className={cn("text-xl font-bold mb-2 transition-colors", activeStep === step.num ? "text-brand-cyan" : "text-zinc-200")}>{step.title}</h4>
-                  <p className="text-zinc-400 font-body">{step.desc}</p>
-                </div>
+              <div className={`w-16 h-16 rounded-full border-2 ${step.ring} flex items-center justify-center mb-8 bg-zinc-950/50 group-hover:scale-110 transition-transform duration-300`}>
+                {step.icon}
               </div>
-            ))}
-          </div>
-
-          <div className="relative h-[400px] rounded-2xl border border-white/10 bg-zinc-900/80 p-6 font-mono text-sm overflow-hidden flex flex-col shadow-2xl z-10">
-            <div className="flex gap-2 mb-4">
-              <div className="w-3 h-3 rounded-full bg-red-500" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
-            </div>
-            <div className="flex-1 text-zinc-400 space-y-4">
-              <AnimatePresence mode="wait">
-                {activeStep === 1 && (
-                  <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="h-full flex flex-col justify-center gap-4">
-                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-4">
-                      <Mail className="w-8 h-8 text-brand-purple" />
-                      <div>
-                        <p className="text-white font-bold">Welcome to zen+ TV</p>
-                        <p className="text-xs">Your subscription details and M3U link</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-                {activeStep === 2 && (
-                  <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="h-full flex flex-col justify-center gap-4">
-                    <div className="p-6 rounded-xl bg-white/5 border border-white/10 text-center">
-                      <p className="text-white font-bold mb-4">{activeTab} App Store</p>
-                      <button className="px-6 py-2 bg-brand-cyan/20 text-brand-cyan rounded-full border border-brand-cyan/50 text-xs font-bold uppercase tracking-widest">Download TiviMate</button>
-                    </div>
-                  </motion.div>
-                )}
-                {activeStep === 3 && (
-                  <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="h-full flex flex-col">
-                    <p className="text-zinc-500">// Authenticating Device...</p>
-                    <p className="text-green-400 font-bold mt-4 mb-3 flex items-center gap-2"><Check className="w-4 h-4" /> Connection Successful</p>
-                    <div className="p-4 rounded bg-white/5 border border-white/10 space-y-3 shadow-[0_0_30px_rgba(0,242,254,0.1)]">
-                      <p className="flex justify-between"><span>Channels:</span> <span className="text-white font-bold">21,459 Loaded</span></p>
-                      <p className="flex justify-between"><span>VOD Library:</span> <span className="text-white font-bold">104,230 Movies</span></p>
-                      <p className="flex justify-between"><span>Status:</span> <span className="text-brand-cyan font-bold bg-brand-cyan/10 px-2 py-0.5 rounded">ULTRA HD 4K READY</span></p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
+              <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+              <p className="text-zinc-400 font-body text-sm leading-relaxed">{step.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -6,61 +6,78 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-zinc-950 border-t border-white/10 pt-20 pb-10">
+    <footer className="bg-[#0b0f19] border-t border-white/10 pt-20 pb-10">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-1 cursor-pointer select-none">
-              <span className="text-2xl font-heading font-extrabold text-white tracking-tight">zen</span>
-              <span className="text-2xl font-heading font-extrabold bg-clip-text text-transparent bg-brand-gradient">+ TV</span>
+              <img src="/logo.svg" alt="zen+ TV" className="h-10 object-contain grayscale-[0.5] opacity-80 hover:grayscale-0 hover:opacity-100 transition-all" />
             </Link>
-            <p className="text-zinc-400 text-sm font-body">The ultimate viewing experience. Stop buffering, start watching.</p>
-            <div className="flex relative mt-2">
-              <input type="email" placeholder="Subscribe to newsletter" className="w-full bg-white/5 border border-white/10 rounded-full py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan transition-colors" />
-              <button className="absolute right-1 top-1 bottom-1 w-10 flex items-center justify-center rounded-full bg-brand-gradient text-zinc-950 hover:scale-105 transition-transform">
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+            <p className="text-zinc-400 text-sm font-body leading-relaxed max-w-[250px]">
+              The ultimate destination for limitless, high-definition entertainment across the globe.
+            </p>
           </div>
 
-          {/* Links Columns */}
-          {[
-            { title: 'Company', links: [{name: 'About Us', path: '/'}, {name: 'Pricing', path: '/pricing'}, {name: 'Channels', path: '/channels'}, {name: 'Contact', path: '/contact'}] },
-            { title: 'Support', links: [{name: 'Setup Tutorials', path: '/tutorials'}, {name: 'FAQ', path: '/'}, {name: 'Resellers', path: '/resellers'}, {name: 'Free Trial', path: '/free-trial'}] },
-          ].map(col => (
-            <div key={col.title}>
-              <h4 className="text-white font-bold mb-6">{col.title}</h4>
-              <ul className="space-y-4">
-                {col.links.map(link => (
-                  <li key={link.name}>
-                    <Link href={link.path} className="text-zinc-400 text-sm hover:text-white hover:translate-x-1 inline-block transition-all duration-300 font-body">{link.name}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
+          {/* Quick Links Column */}
           <div>
-            <h4 className="text-white font-bold mb-6">Legal</h4>
+            <h4 className="text-white font-bold mb-6 text-lg">Quick Links</h4>
             <ul className="space-y-4">
-              {['Terms of Service', 'Privacy Policy', 'DMCA', 'Refund Policy'].map(link => (
-                <li key={link}>
-                  <Link href="#" className="text-zinc-400 text-sm hover:text-white hover:translate-x-1 inline-block transition-all duration-300 font-body">{link}</Link>
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'Pricing', path: '/pricing' },
+                { name: 'Installation Tutorials', path: '/tutorials' },
+                { name: 'VOD Updates', path: '/channels' }
+              ].map(link => (
+                <li key={link.name}>
+                  <Link href={link.path} className="text-zinc-400 text-sm hover:text-white hover:translate-x-1 inline-block transition-all duration-300 font-body">
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
+
+          {/* Legal Column */}
+          <div>
+            <h4 className="text-white font-bold mb-6 text-lg">Legal</h4>
+            <ul className="space-y-4">
+              {[
+                { name: 'Terms of Service', path: '#' },
+                { name: 'Privacy Policy', path: '#' },
+                { name: 'Refund Policy', path: '#' }
+              ].map(link => (
+                <li key={link.name}>
+                  <Link href={link.path} className="text-zinc-400 text-sm hover:text-white hover:translate-x-1 inline-block transition-all duration-300 font-body">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Secure Payments Column */}
+          <div>
+            <h4 className="text-white font-bold mb-6 text-lg">Secure Payments</h4>
+            <div className="flex items-center gap-3">
+              <div className="bg-white p-1.5 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-full w-full object-contain" />
+              </div>
+              <div className="bg-white p-1.5 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-full w-full object-contain" />
+              </div>
+              <div className="bg-white p-1.5 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-full w-full object-contain" />
+              </div>
+              <div className="bg-[#f7931a] p-1.5 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin" className="h-full w-full object-contain brightness-0 invert" />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-zinc-500 text-sm">© {new Date().getFullYear()} zen+ TV. All rights reserved.</p>
-          <div className="flex items-center gap-4 text-zinc-600">
-             {/* Payment Gateway Icons (Abstracted) */}
-             <CreditCard className="w-8 h-8" />
-             <Shield className="w-8 h-8" />
-             <div className="text-xs font-bold border border-zinc-600 rounded px-2 py-1">CRYPTO</div>
-          </div>
+        <div className="border-t border-white/10 pt-8 flex items-center justify-center">
+          <p className="text-zinc-500 text-sm font-body">© 2026 zen+ TV. All rights reserved.</p>
         </div>
       </div>
     </footer>

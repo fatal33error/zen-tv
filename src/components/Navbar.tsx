@@ -33,16 +33,18 @@ export default function Navbar() {
   const languages = ['EN', 'FR', 'EL', 'NO', 'SV', 'DA'];
 
   return (
-    <header className={cn(
-      "fixed top-0 inset-x-0 z-50 transition-all duration-300", 
-      scrolled ? "bg-zinc-900/60 backdrop-blur-xl border-b border-white/10 py-4" : "bg-transparent py-6"
-    )}>
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-1 cursor-pointer select-none">
-          <span className="text-2xl font-heading font-extrabold text-white tracking-tight">zen</span>
-          <span className="text-2xl font-heading font-extrabold bg-clip-text text-transparent bg-brand-gradient animate-pulse">+ TV</span>
-        </Link>
+    <div className="flex justify-center w-full">
+      <header className={cn(
+        "fixed z-50 transition-all duration-500 left-1/2 -translate-x-1/2", 
+        scrolled 
+          ? "top-4 w-[95%] lg:w-4/5 bg-zinc-900/60 backdrop-blur-2xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-full py-3" 
+          : "top-0 w-full bg-transparent py-6"
+      )}>
+        <div className="w-full px-6 lg:px-8 flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-1 cursor-pointer select-none">
+            <img src="/logo.svg" alt="zen+ TV" className="h-8 lg:h-10 object-contain" />
+          </Link>
         
         {/* Desktop Links */}
         <nav className="hidden lg:flex items-center gap-8">
@@ -105,6 +107,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+      </header>
+    </div>
   );
 }
