@@ -60,14 +60,14 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6 text-lg">Secure Payments</h4>
             <div className="flex items-center gap-3">
-              <div className="bg-white p-1.5 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" alt="Visa" className="h-full w-full object-contain" />
+              <div className="bg-white p-1 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
+                <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" className="h-full w-full object-contain" />
               </div>
-              <div className="bg-white p-1.5 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-full w-full object-contain" />
+              <div className="bg-white p-1 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
+                <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" className="h-full w-full object-contain" />
               </div>
-              <div className="bg-white p-1.5 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-full w-full object-contain" />
+              <div className="bg-white p-1 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
+                <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" className="h-full w-full object-contain" />
               </div>
               <div className="bg-[#f7931a] p-1.5 rounded flex items-center justify-center w-12 h-8 hover:-translate-y-1 transition-transform shadow-lg cursor-pointer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin" className="h-full w-full object-contain brightness-0 invert" />
