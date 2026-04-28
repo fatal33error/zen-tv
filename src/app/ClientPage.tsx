@@ -7,6 +7,7 @@ import {
   ChevronDown, Zap, Lock, Star, Globe, MonitorPlay,
   PlayCircle, Mail, ShoppingCart
 } from 'lucide-react';
+import Link from 'next/link';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -46,13 +47,13 @@ function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <button className="group flex items-center justify-center gap-2 px-8 py-4 rounded-full text-lg font-bold text-zinc-950 bg-brand-gradient shadow-[0_0_30px_rgba(0,242,254,0.3)] hover:scale-105 transition-all">
+              <Link href="/free-trial" className="group flex items-center justify-center gap-2 px-8 py-4 rounded-full text-lg font-bold text-zinc-950 bg-brand-gradient shadow-[0_0_30px_rgba(0,242,254,0.3)] hover:scale-105 transition-all">
                 <PlayCircle className="w-5 h-5 fill-zinc-950 text-brand-cyan group-hover:scale-110 transition-transform" />
                 Start Your Free Trial
-              </button>
-              <button className="px-8 py-4 rounded-full text-lg font-medium text-white border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-colors">
+              </Link>
+              <Link href="/pricing" className="px-8 py-4 rounded-full text-lg font-medium text-white border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-colors text-center">
                 View Subscription Plans
-              </button>
+              </Link>
             </div>
 
             <div className="flex flex-wrap items-center gap-6 pt-4 text-sm text-zinc-400 font-medium">
