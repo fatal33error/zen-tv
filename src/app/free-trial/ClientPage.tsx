@@ -57,19 +57,37 @@ export default function FreeTrialPage() {
                       <button onClick={() => setSubmitted(false)} className="px-6 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition-colors text-white">Request another</button>
                    </div>
                 ) : (
-                   <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-5">
+                   <form onSubmit={async (e) => { 
+                          e.preventDefault(); 
+                          const form = e.target as HTMLFormElement;
+                          const formData = new FormData(form);
+                          formData.append("access_key", "1c1ba7d4-77fd-4963-a55c-44a890f9bdc3");
+                          // Add subject for free trial request
+                          formData.append("subject", "New Free Trial Request");
+                          
+                          try {
+                             await fetch("https://api.web3forms.com/submit", {
+                                method: "POST",
+                                body: formData
+                             });
+                             setSubmitted(true);
+                             form.reset();
+                          } catch (error) {
+                             console.error("Error submitting form", error);
+                          }
+                       }} className="space-y-5">
                      <div>
                         <label className="block text-sm font-medium text-zinc-400 mb-2">Full Name</label>
-                        <input required type="text" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="John Doe" />
+                        <input required type="text" name="name" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="John Doe" />
                      </div>
                      <div>
                         <label className="block text-sm font-medium text-zinc-400 mb-2">Email Address</label>
-                        <input required type="email" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="john@example.com" />
+                        <input required type="email" name="email" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="john@example.com" />
                      </div>
                      <div>
                         <label className="block text-sm font-medium text-zinc-400 mb-2">Primary Device</label>
                         <div className="relative">
-                           <select className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan appearance-none transition-colors">
+                           <select name="device" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan appearance-none transition-colors">
                               <option>Smart TV (Samsung, LG)</option>
                               <option>Firestick / Android TV</option>
                               <option>Apple TV</option>

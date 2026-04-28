@@ -53,24 +53,40 @@ export default function ContactPage() {
                          <button onClick={() => setSubmitted(false)} className="px-6 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition-colors text-white">Send another message</button>
                       </div>
                    ) : (
-                      <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-6">
+                      <form onSubmit={async (e) => { 
+                          e.preventDefault(); 
+                          const form = e.target as HTMLFormElement;
+                          const formData = new FormData(form);
+                          formData.append("access_key", "1c1ba7d4-77fd-4963-a55c-44a890f9bdc3");
+                          
+                          try {
+                             await fetch("https://api.web3forms.com/submit", {
+                                method: "POST",
+                                body: formData
+                             });
+                             setSubmitted(true);
+                             form.reset();
+                          } catch (error) {
+                             console.error("Error submitting form", error);
+                          }
+                       }} className="space-y-6">
                          <div className="grid md:grid-cols-2 gap-6">
                             <div>
                                <label className="block text-sm font-medium text-zinc-400 mb-2">Full Name</label>
-                               <input required type="text" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="John Doe" />
+                               <input required type="text" name="name" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="John Doe" />
                             </div>
                             <div>
                                <label className="block text-sm font-medium text-zinc-400 mb-2">Email Address</label>
-                               <input required type="email" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="john@example.com" />
+                               <input required type="email" name="email" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="john@example.com" />
                             </div>
                          </div>
                          <div>
                             <label className="block text-sm font-medium text-zinc-400 mb-2">Subject</label>
-                            <input required type="text" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="How can we help?" />
+                            <input required type="text" name="subject" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="How can we help?" />
                          </div>
                          <div>
                             <label className="block text-sm font-medium text-zinc-400 mb-2">Message</label>
-                            <textarea required rows={5} className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors resize-none" placeholder="Type your message here..."></textarea>
+                            <textarea required rows={5} name="message" className="w-full bg-zinc-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors resize-none" placeholder="Type your message here..."></textarea>
                          </div>
                          <button type="submit" className="px-8 py-4 rounded-xl font-bold text-zinc-950 bg-brand-gradient hover:scale-105 transition-all shadow-[0_0_20px_rgba(0,242,254,0.3)]">
                             Send Message
