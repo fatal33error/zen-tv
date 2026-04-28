@@ -27,9 +27,12 @@ function Hero() {
           
           {/* Left Column: The Pitch */}
           <div className="flex flex-col items-start gap-8">
-            <div className="relative inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden group">
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent)] -translate-x-full group-hover:animate-shine" />
-              <span className="text-sm font-medium text-white">✨ Voted #1 Premium Streaming Provider 2024</span>
+            <div className="relative inline-flex items-center gap-2 px-5 py-2 rounded-full border border-brand-cyan/20 bg-zinc-900/50 backdrop-blur-md overflow-hidden group shadow-[0_0_20px_rgba(0,242,254,0.1)] animate-pulse-glow">
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(0,242,254,0.15),transparent)] -translate-x-full group-hover:animate-shine" />
+              <div className="absolute inset-0 bg-brand-cyan/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="relative text-sm font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-brand-cyan to-white animate-text-shimmer bg-[length:200%_auto]">
+                ✨ Voted #1 Premium Streaming Provider 2024
+              </span>
             </div>
 
             <h1 className="text-5xl lg:text-7xl font-heading font-extrabold leading-[1.1] tracking-tight text-white">
@@ -59,85 +62,84 @@ function Hero() {
               <span className="flex items-center gap-2"><Star className="w-4 h-4 text-yellow-400 fill-yellow-400" /> 4.9/5 Trustpilot</span>
             </div>
           </div>
-
           {/* Right Column: The Engine (Visuals) */}
-          <div className="relative h-[500px] lg:h-[650px] w-full mt-12 lg:mt-0 perspective-1000">
+          <div className="relative h-[400px] lg:h-[550px] w-full mt-12 lg:mt-0 perspective-1000">
             <div className="absolute inset-0 bg-brand-purple/20 blur-[120px] rounded-full animate-pulse" />
             
             {/* Smart TV Frame */}
             <motion.div 
               initial={{ y: 20, opacity: 0, rotateY: -5 }} animate={{ y: 0, opacity: 1, rotateY: 0 }} transition={{ duration: 0.8 }}
-              className="absolute top-0 right-0 lg:right-5 w-[90%] h-[60%] rounded-2xl border border-white/10 bg-zinc-900/80 backdrop-blur-xl shadow-2xl overflow-hidden flex flex-col"
+              className="absolute top-10 lg:top-12 right-0 lg:right-5 w-[90%] h-[55%] lg:h-[60%] rounded-2xl border border-white/10 bg-zinc-900/80 backdrop-blur-xl shadow-2xl overflow-hidden flex flex-col z-10"
             >
-              <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-50"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
+              <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-60"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
               <div className="absolute bottom-6 left-6 flex items-center gap-4">
-                 <div className="w-12 h-12 rounded-full bg-brand-cyan/20 flex items-center justify-center backdrop-blur-md border border-brand-cyan/50 text-brand-cyan pl-1">
-                   <Play className="w-5 h-5 fill-current" />
+                 <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-brand-cyan/20 flex items-center justify-center backdrop-blur-md border border-brand-cyan/50 text-brand-cyan pl-1">
+                   <Play className="w-4 h-4 lg:w-5 lg:h-5 fill-current" />
                  </div>
                  <div>
-                   <p className="text-white font-bold text-lg leading-tight">Premier League Live</p>
-                   <p className="text-brand-cyan text-sm font-medium">4K Ultra HD</p>
+                   <p className="text-white font-bold text-base lg:text-lg leading-tight">Premier League Live</p>
+                   <p className="text-brand-cyan text-xs lg:text-sm font-medium">4K Ultra HD</p>
                  </div>
               </div>
             </motion.div>
 
             {/* Tablet Frame */}
             <motion.div 
-              initial={{ x: -40, y: 40, opacity: 0 }} animate={{ x: -20, y: 20, opacity: 1 }} transition={{ delay: 0.3, duration: 0.8 }}
-              className="absolute bottom-24 lg:bottom-32 left-0 w-[55%] h-[40%] rounded-xl border border-white/20 bg-zinc-800/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden p-4 flex flex-col"
+              initial={{ x: -40, y: 40, opacity: 0 }} animate={{ x: 0, y: 0, opacity: 1 }} transition={{ delay: 0.3, duration: 0.8 }}
+              className="absolute -top-5 lg:top-0 left-0 lg:-left-5 w-[65%] lg:w-[55%] h-[45%] rounded-xl border border-white/20 bg-zinc-800/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden p-4 flex flex-col z-20"
             >
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Top VOD</span>
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider flex items-center gap-2"><Star className="w-3 h-3 text-amber-400 fill-amber-400" /> Top VOD</span>
                 <span className="w-10 h-1 bg-white/20 rounded-full" />
               </div>
               <div className="grid grid-cols-2 gap-3 flex-1">
-                <div className="rounded-lg bg-gradient-to-br from-zinc-700 to-zinc-800 h-full border border-white/5" />
-                <div className="rounded-lg bg-gradient-to-br from-zinc-700 to-zinc-800 h-full border border-white/5" />
+                <div className="rounded-lg bg-[url('/vod-1.jpg')] bg-cover bg-center h-full border border-white/10 shadow-inner group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <PlayCircle className="text-white w-8 h-8" />
+                  </div>
+                </div>
+                <div className="rounded-lg bg-[url('/vod-2.jpg')] bg-cover bg-center h-full border border-white/10 shadow-inner group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <PlayCircle className="text-white w-8 h-8" />
+                  </div>
+                </div>
               </div>
             </motion.div>
 
             {/* Mobile Frame */}
             <motion.div 
-              initial={{ x: 40, y: 60, opacity: 0 }} animate={{ x: 20, y: 40, opacity: 1 }} transition={{ delay: 0.5, duration: 0.8 }}
-              className="absolute -bottom-10 right-10 w-[30%] h-[55%] rounded-[2rem] border-[6px] border-zinc-800 bg-zinc-950 shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-hidden"
+              initial={{ x: 40, y: 60, opacity: 0 }} animate={{ x: 0, y: 0, opacity: 1 }} transition={{ delay: 0.5, duration: 0.8 }}
+              className="absolute bottom-0 lg:-bottom-5 right-0 lg:-right-8 w-[35%] lg:w-[32%] h-[60%] lg:h-[65%] rounded-[2rem] lg:rounded-[2.5rem] border-[6px] lg:border-[8px] border-zinc-800 bg-zinc-950 shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-hidden z-30"
             >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-5 bg-zinc-800 rounded-b-xl" />
-              <div className="w-full h-full p-4 pt-10 flex flex-col gap-4 bg-zinc-900/50">
-                <div className="w-full h-28 bg-brand-purple/20 rounded-xl border border-brand-purple/30 flex items-center justify-center">
-                  <PlayCircle className="text-brand-purple w-8 h-8 opacity-60" />
-                </div>
-                <div className="w-3/4 h-3 bg-zinc-800 rounded-full" />
-                <div className="w-1/2 h-3 bg-zinc-800 rounded-full" />
-                <div className="w-full h-3 bg-zinc-800 rounded-full mt-auto" />
-              </div>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[18px] lg:h-[22px] bg-zinc-800 rounded-b-xl z-10" />
+              <div className="w-full h-full bg-[url('/mobile-ui.png')] bg-cover bg-top" />
             </motion.div>
 
             {/* Floating Elements */}
             <motion.div 
               animate={{ y: [-15, 15, -15] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-              className="absolute top-10 -left-5 p-3 lg:p-4 border border-white/10 bg-white/5 backdrop-blur-xl rounded-xl flex items-center gap-3 shadow-xl"
+              className="absolute bottom-5 lg:bottom-10 left-5 lg:left-10 p-3 border border-white/10 bg-white/5 backdrop-blur-xl rounded-xl flex items-center gap-3 shadow-xl z-40"
             >
-              <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center text-red-500"><MonitorPlay size={20} /></div>
-              <span className="text-sm font-bold whitespace-nowrap text-white">Live Sports - 4K</span>
+              <div className="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center text-red-500"><MonitorPlay size={16} /></div>
+              <span className="text-xs font-bold whitespace-nowrap text-white">Live Sports</span>
             </motion.div>
 
             <motion.div 
               animate={{ y: [15, -15, 15] }} transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              className="absolute top-1/2 -right-10 p-3 lg:p-4 border border-white/10 bg-white/5 backdrop-blur-xl rounded-xl flex items-center gap-3 shadow-xl z-20"
+              className="absolute top-1/2 -right-2 lg:-right-12 p-3 border border-white/10 bg-white/5 backdrop-blur-xl rounded-xl flex items-center gap-3 shadow-xl z-40"
             >
-              <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-500"><Zap size={20} /></div>
-              <span className="text-sm font-bold whitespace-nowrap text-white">Breaking News</span>
+              <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-500"><Zap size={16} /></div>
+              <span className="text-xs font-bold whitespace-nowrap text-white">4K Channels</span>
             </motion.div>
             
             <motion.div 
               animate={{ y: [-10, 10, -10] }} transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-5 -left-10 p-3 lg:p-4 border border-white/10 bg-white/5 backdrop-blur-xl rounded-xl flex items-center gap-3 shadow-xl z-20"
+              className="absolute -top-5 lg:-top-5 right-10 lg:right-20 p-3 border border-white/10 bg-white/5 backdrop-blur-xl rounded-xl flex items-center gap-3 shadow-xl z-40"
             >
-              <div className="w-10 h-10 rounded-lg bg-brand-purple/20 flex items-center justify-center text-brand-purple"><Film size={20} /></div>
-              <span className="text-sm font-bold whitespace-nowrap text-white">New Releases</span>
+              <div className="w-8 h-8 rounded-lg bg-brand-purple/20 flex items-center justify-center text-brand-purple"><Film size={16} /></div>
+              <span className="text-xs font-bold whitespace-nowrap text-white">New Releases</span>
             </motion.div>
-
           </div>
         </div>
       </div>
