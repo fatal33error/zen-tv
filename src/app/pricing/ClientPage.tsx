@@ -7,41 +7,36 @@ import { Check } from "lucide-react";
 export default function PricingPage() {
   const plans = [
     {
-      name: "Standard Access",
+      name: "1-Month Pass",
       price: "$9.99",
       period: "monthly",
-      description: "Perfect for a solo weekend of cinematic entertainment.",
       features: ["20,000+ Live Channels", "99.9% Uptime Guarantee", "Ultra-HD & 4K Quality", "Standard Customer Support"],
-      buttonText: "Begin Your Journey",
+      buttonText: "Get Started for 1-Month Pass",
       highlight: false,
     },
     {
-      name: "Premium Quarterly",
+      name: "3-Months Pass",
       price: "$24.99",
       period: "3 months",
-      description: "Our most popular choice for consistent high-def streaming.",
       features: ["All Standard Features", "Advanced Anti-Freeze v2.0", "Full VOD Library Access", "Multi-Device Compatibility"],
-      buttonText: "Unlock Premium",
+      buttonText: "Select 3-Months Pass",
       highlight: false,
     },
     {
-      name: "Elite Semi-Annual",
+      name: "6-Months Pass",
       price: "$44.99",
       period: "6 months",
-      description: "Serious entertainment for serious viewers. Maximum value.",
       features: ["All Premium Features", "Priority Server Routing", "Exclusive PPV Events", "25% Loyalty Discount"],
-      buttonText: "Go Elite Now",
+      buttonText: "Select 6-Months Pass",
       highlight: false,
     },
     {
-      name: "Ultimate Yearly",
+      name: "1-Year Pass",
       price: "$79.99",
       period: "annually",
-      description: "The complete zen+ experience. Zero limits, pure luxury.",
-      subtitle: "Just $6.66 per month — our best deal.",
       badge: "ULTIMATE VALUE • SAVE 40%",
-      features: ["All Elite Features", "2 Simultaneous Streams", "VIP Concierge Support", "Early Access to Features"],
-      buttonText: "Claim Ultimate Access",
+      features: ["All Elite Features", "VIP Concierge Support", "Early Access to Features", "Priority Server Routing"],
+      buttonText: "Get 1-Year Pass",
       highlight: true,
     },
   ];
@@ -94,12 +89,9 @@ export default function PricingPage() {
               )}
 
               <div className="mb-8">
-                <h3 className={`text-xl font-heading font-bold mb-3 tracking-tight ${plan.highlight ? 'text-brand-cyan' : 'text-zinc-100'}`}>
+                <h3 className={`text-2xl font-heading font-bold mb-3 tracking-tight ${plan.highlight ? 'text-brand-cyan' : 'text-zinc-100'}`}>
                   {plan.name}
                 </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed min-h-[40px]">
-                  {plan.description}
-                </p>
               </div>
 
               <div className="mb-8">
@@ -107,11 +99,6 @@ export default function PricingPage() {
                   <span className="text-5xl font-extrabold text-white tracking-tighter">{plan.price}</span>
                   <span className="text-zinc-500 text-sm font-semibold">/{plan.period}</span>
                 </div>
-                {plan.subtitle && (
-                  <div className="mt-3 py-1.5 px-3 rounded-lg bg-green-500/10 text-[#4ade80] text-xs font-bold inline-block">
-                    {plan.subtitle}
-                  </div>
-                )}
               </div>
 
               <div className="space-y-5 mb-10 flex-1">
@@ -132,7 +119,7 @@ export default function PricingPage() {
               </div>
 
               <button
-                className={`group/btn relative w-full py-5 rounded-2xl font-black transition-all duration-300 overflow-hidden text-xs tracking-[0.15em] uppercase ${
+                className={`group/btn relative w-full py-5 rounded-2xl font-heading font-bold transition-all duration-300 overflow-hidden text-sm uppercase ${
                   plan.highlight
                     ? "bg-brand-gradient text-zinc-950 shadow-[0_0_30px_rgba(0,242,254,0.4)]"
                     : "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20"
