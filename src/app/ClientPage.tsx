@@ -294,116 +294,151 @@ function Marquee() {
 function Pricing() {
   const plans = [
     {
-      name: "1-Month Pass",
+      name: "Standard Access",
       price: "$9.99",
-      period: "mo",
-      features: ["Full Channel Access", "Complete VOD Library", "Standard Support"],
-      buttonText: "Select 1-Month",
+      period: "monthly",
+      description: "Perfect for a solo weekend of cinematic entertainment.",
+      features: ["20,000+ Live Channels", "99.9% Uptime Guarantee", "Ultra-HD & 4K Quality", "Standard Customer Support"],
+      buttonText: "Begin Your Journey",
       highlight: false,
     },
     {
-      name: "3-Month Pass",
+      name: "Premium Quarterly",
       price: "$24.99",
-      period: "3mo",
-      features: ["Full Channel Access", "Complete VOD Library", "Standard Support"],
-      buttonText: "Select 3-Month",
+      period: "3 months",
+      description: "Our most popular choice for consistent high-def streaming.",
+      features: ["All Standard Features", "Advanced Anti-Freeze v2.0", "Full VOD Library Access", "Multi-Device Compatibility"],
+      buttonText: "Unlock Premium",
       highlight: false,
     },
     {
-      name: "6-Month Pass",
+      name: "Elite Semi-Annual",
       price: "$44.99",
-      period: "6mo",
-      features: ["Full Channel Access", "Complete VOD Library", "Standard Support", "25% Savings"],
-      buttonText: "Get Started",
+      period: "6 months",
+      description: "Serious entertainment for serious viewers. Maximum value.",
+      features: ["All Premium Features", "Priority Server Routing", "Exclusive PPV Events", "25% Loyalty Discount"],
+      buttonText: "Go Elite Now",
       highlight: false,
     },
     {
-      name: "12-Month Pass",
+      name: "Ultimate Yearly",
       price: "$79.99",
-      period: "yr",
-      subtitle: "Just $6.66 per month",
-      badge: "Best Value - Save 40%",
-      features: ["Full Channel Access", "Complete VOD Library", "Priority 24/7 Support", "2 Simultaneous Devices"],
-      buttonText: "Get 12-Month Pass",
+      period: "annually",
+      description: "The complete zen+ experience. Zero limits, pure luxury.",
+      subtitle: "Just $6.66 per month — our best deal.",
+      badge: "ULTIMATE VALUE • SAVE 40%",
+      features: ["All Elite Features", "2 Simultaneous Streams", "VIP Concierge Support", "Early Access to Features"],
+      buttonText: "Claim Ultimate Access",
       highlight: true,
     },
   ];
 
   return (
-    <section id="pricing" className="py-24 relative z-10 bg-zinc-950">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-cyan/10 rounded-full blur-[150px] pointer-events-none" />
+    <section id="pricing" className="py-32 relative z-10 bg-zinc-950 overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-brand-cyan/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-brand-purple/5 rounded-full blur-[120px] pointer-events-none" />
+      
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} className="text-4xl lg:text-5xl font-heading font-bold mb-4 text-white">
-            Choose Your <span className="bg-clip-text text-transparent bg-brand-gradient">zen+ TV Pass</span>
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/20 bg-brand-cyan/5 text-brand-cyan text-xs font-bold tracking-widest uppercase mb-6"
+          >
+            <Star size={14} className="fill-brand-cyan" />
+            Transparent Pricing
+          </motion.div>
+          <motion.h2 
+            initial={{opacity:0, y:20}} 
+            whileInView={{opacity:1, y:0}} 
+            viewport={{once:true}} 
+            className="text-4xl lg:text-6xl font-heading font-extrabold mb-6 text-white leading-tight"
+          >
+            Choose Your <span className="bg-clip-text text-transparent bg-brand-gradient">Master Pass.</span>
           </motion.h2>
-          <motion.p initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:0.1}} className="text-xl text-zinc-400 font-body">
-            Simple, transparent pricing. No hidden fees. Cancel anytime.
+          <motion.p 
+            initial={{opacity:0, y:20}} 
+            whileInView={{opacity:1, y:0}} 
+            viewport={{once:true}} 
+            transition={{delay:0.1}} 
+            className="text-lg text-zinc-400 font-body leading-relaxed"
+          >
+            No contracts. No hidden fees. Just pure, unadulterated entertainment 
+            delivered at the speed of light.
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6 items-end">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 items-stretch">
           {plans.map((plan, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative rounded-3xl p-8 border flex flex-col min-h-[480px] ${
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.21, 0.45, 0.32, 0.9] }}
+              className={`group relative rounded-[2.5rem] p-10 border transition-all duration-500 flex flex-col h-full ${
                 plan.highlight
-                  ? "bg-zinc-900/80 backdrop-blur-2xl border-transparent shadow-[0_0_50px_rgba(0,242,254,0.15)] transform lg:-translate-y-4 lg:scale-[1.03] z-10"
-                  : "bg-zinc-900/40 backdrop-blur-xl border-white/10 transition-all hover:-translate-y-2 hover:bg-zinc-900/60 hover:shadow-xl mt-4 lg:mt-0"
+                  ? "bg-zinc-900/80 backdrop-blur-3xl border-brand-cyan/30 shadow-[0_0_80px_rgba(0,242,254,0.15)] lg:scale-[1.05] z-20"
+                  : "bg-zinc-900/40 backdrop-blur-xl border-white/5 hover:border-white/20 hover:bg-zinc-900/60 hover:shadow-2xl z-10"
               }`}
             >
               {plan.highlight && (
-                <>
-                  <div className="absolute inset-0 bg-gradient-to-b from-brand-cyan to-green-500 rounded-3xl -z-10 p-[2px]">
-                    <div className="absolute inset-0 bg-zinc-900 rounded-[calc(1.5rem-2px)] -z-10" />
+                <div className="absolute -top-5 inset-x-0 flex justify-center">
+                  <div className="bg-gradient-to-r from-brand-cyan to-brand-purple text-zinc-950 text-[10px] font-black px-6 py-2 rounded-full whitespace-nowrap shadow-[0_4px_30px_rgba(0,242,254,0.5)] tracking-[0.2em] animate-pulse-glow">
+                    {plan.badge}
                   </div>
-                  <div className="absolute -top-4 inset-x-0 flex justify-center">
-                    <motion.div 
-                      animate={{ y: [0, -4, 0] }} 
-                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                      className="bg-gradient-to-r from-brand-cyan to-green-400 text-zinc-950 text-xs font-bold px-5 py-1.5 rounded-full whitespace-nowrap shadow-[0_4px_20px_rgba(0,242,254,0.4)]"
-                    >
-                      {plan.badge}
-                    </motion.div>
-                  </div>
-                </>
-              )}
-              <div className="mb-4">
-                <h3 className={`text-2xl font-heading font-bold mb-2 ${plan.highlight ? 'text-brand-cyan' : 'text-zinc-100'}`}>{plan.name}</h3>
-              </div>
-              <div className={`mb-${plan.subtitle ? '2' : '8'}`}>
-                <span className="text-5xl font-bold text-white">{plan.price}</span>
-                <span className="text-zinc-400 text-sm font-medium">/{plan.period}</span>
-              </div>
-              {plan.subtitle && (
-                <div className="mb-6 text-[#4ade80] text-sm font-bold">
-                  {plan.subtitle}
                 </div>
               )}
-              <ul className="space-y-4 mb-8 flex-1 mt-4">
+
+              <div className="mb-8">
+                <h3 className={`text-xl font-heading font-bold mb-3 tracking-tight ${plan.highlight ? 'text-brand-cyan' : 'text-zinc-100'}`}>
+                  {plan.name}
+                </h3>
+                <p className="text-zinc-400 text-sm leading-relaxed min-h-[40px]">
+                  {plan.description}
+                </p>
+              </div>
+
+              <div className="mb-8">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-5xl font-extrabold text-white tracking-tighter">{plan.price}</span>
+                  <span className="text-zinc-500 text-sm font-semibold">/{plan.period}</span>
+                </div>
+                {plan.subtitle && (
+                  <div className="mt-3 py-1.5 px-3 rounded-lg bg-green-500/10 text-[#4ade80] text-xs font-bold inline-block">
+                    {plan.subtitle}
+                  </div>
+                )}
+              </div>
+
+              <div className="space-y-5 mb-10 flex-1">
                 {plan.features.map((feat, idx) => (
-                  <li key={idx} className={`flex items-center gap-3 text-sm font-medium ${plan.highlight ? 'text-white' : 'text-zinc-300'}`}>
-                    {plan.highlight ? (
-                      <div className="w-2.5 h-2.5 rounded-full bg-brand-cyan flex-shrink-0 shadow-[0_0_10px_rgba(0,242,254,0.5)]" />
-                    ) : (
-                      <Check className="w-4 h-4 flex-shrink-0 text-green-500" />
-                    )}
-                    {feat}
-                  </li>
+                  <div key={idx} className="flex items-center gap-3 text-sm group/item">
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover/item:scale-110 ${
+                      plan.highlight ? 'bg-brand-cyan/20' : 'bg-white/5'
+                    }`}>
+                      <Check className={`w-3 h-3 ${plan.highlight ? 'text-brand-cyan' : 'text-green-500'}`} />
+                    </div>
+                    <span className={`font-medium transition-colors duration-300 ${
+                      plan.highlight ? 'text-white' : 'text-zinc-400 group-hover/item:text-white'
+                    }`}>
+                      {feat}
+                    </span>
+                  </div>
                 ))}
-              </ul>
+              </div>
+
               <button
-                className={`w-full py-4 rounded-full font-bold transition-all mt-auto text-sm ${
+                className={`group/btn relative w-full py-5 rounded-2xl font-black transition-all duration-300 overflow-hidden text-xs tracking-[0.15em] uppercase ${
                   plan.highlight
-                    ? "bg-gradient-to-r from-brand-cyan to-green-400 text-zinc-950 hover:scale-105 shadow-[0_0_25px_rgba(0,242,254,0.4)]"
-                    : "bg-white/10 text-white hover:bg-white/20 hover:scale-[1.02]"
+                    ? "bg-brand-gradient text-zinc-950 shadow-[0_0_30px_rgba(0,242,254,0.4)]"
+                    : "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20"
                 }`}
               >
-                {plan.buttonText}
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent)] -translate-x-full group-hover/btn:animate-shine" />
+                <span className="relative z-10">{plan.buttonText}</span>
               </button>
             </motion.div>
           ))}
