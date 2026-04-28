@@ -148,6 +148,45 @@ function Hero() {
 }
 
 // --------------------------------------------------------
+// 2. Partner Logos (Infinite Slideshow)
+// --------------------------------------------------------
+function PartnerLogos() {
+  const logos = [
+    { name: "Netflix", src: "/partners/netflix.png" },
+    { name: "HBO", src: "/partners/hbo.png" },
+    { name: "Apple TV", src: "/partners/apple.png" },
+    { name: "ESPN", src: "/partners/espn.png" },
+    { name: "Sky Sports", src: "/partners/sky.png" },
+    { name: "Prime Video", src: "/partners/prime.png" },
+    { name: "DAZN", src: "/partners/dazn.png" },
+    { name: "Viaplay", src: "/partners/viaplay.png" },
+    { name: "Canal+", src: "/partners/canal.png" },
+    { name: "Cosmote Sport", src: "/partners/cosmote.jpg" },
+  ];
+
+  return (
+    <div className="py-6 bg-zinc-950/40 border-y border-white/5 overflow-hidden relative z-20">
+      <div className="flex overflow-hidden w-full group relative">
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none" />
+        
+        <div className="flex w-max space-x-16 px-8 animate-infinite-scroll group-hover:[animation-play-state:paused]">
+          {[...logos, ...logos, ...logos].map((logo, idx) => (
+            <div key={idx} className="flex items-center justify-center w-28 lg:w-36 h-10 lg:h-12 grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-500 ease-out cursor-pointer">
+              <img 
+                src={logo.src} 
+                alt={logo.name} 
+                className="max-h-full max-w-full object-contain filter invert brightness-200" 
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --------------------------------------------------------
 // 3. Features Section (The "Why Us" Grid)
 // --------------------------------------------------------
 function FeatureCard({ icon: Icon, title, description }: { icon: any, title: string, description: string }) {
@@ -528,6 +567,7 @@ export default function ZenPlusLandingPage() {
   return (
     <div className="bg-zinc-950 text-zinc-50 font-body selection:bg-brand-cyan/30 selection:text-white">
       <Hero />
+      <PartnerLogos />
       <Features />
       <Marquee />
       <Pricing />
