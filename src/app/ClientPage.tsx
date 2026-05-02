@@ -5,11 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Check, Play, Monitor, Activity, Film, Smartphone, Tv, 
   ChevronDown, Zap, Lock, Star, Globe, MonitorPlay,
-  PlayCircle, Mail, ShoppingCart
+  PlayCircle, Mail, ShoppingCart, HelpCircle, ListVideo, CreditCard
 } from 'lucide-react';
 import Link from 'next/link';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { ParticlesBackground } from "@/components/ui/ParticlesBackground";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { GradientText } from "@/components/ui/GradientText";
+import { Badge } from "@/components/ui/Badge";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -28,17 +33,13 @@ function Hero() {
           
           {/* Left Column: The Pitch */}
           <div className="flex flex-col items-start gap-8">
-            <div className="relative inline-flex items-center gap-2 px-5 py-2 rounded-full border border-brand-cyan/20 bg-zinc-900/50 backdrop-blur-md overflow-hidden group shadow-[0_0_20px_rgba(0,242,254,0.1)] animate-pulse-glow">
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(0,242,254,0.15),transparent)] -translate-x-full group-hover:animate-shine" />
-              <div className="absolute inset-0 bg-brand-cyan/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative text-sm font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-brand-cyan to-white animate-text-shimmer bg-[length:200%_auto]">
-                ✨ Voted #1 Premium Streaming Provider 2024
-              </span>
-            </div>
+            <Badge icon={<Star className="w-3.5 h-3.5" />} animate>
+              Voted #1 Premium Streaming Provider 2024
+            </Badge>
 
             <h1 className="text-5xl lg:text-7xl font-heading font-extrabold leading-[1.1] tracking-tight text-white">
               Unlimited Entertainment.<br/>
-              <span className="bg-clip-text text-transparent bg-brand-gradient">Zero Interruptions.</span><br/>
+              <GradientText>Zero Interruptions.</GradientText><br/>
               Welcome to zenplus TV.
             </h1>
 
@@ -233,13 +234,19 @@ function Features() {
   return (
     <section className="py-24 relative">
       <div className="container mx-auto px-6">
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <h2 className="text-4xl lg:text-6xl font-heading font-extrabold mb-6 text-white">
-            Experience Television <span className="bg-clip-text text-transparent bg-brand-gradient">Without Limits.</span>
-          </h2>
-        </div>
+        <SectionHeader
+          badgeText="Why Choose Us"
+          badgeIcon={<Zap className="w-4 h-4" />}
+          title="Experience Television"
+          gradientTitle="Without Limits."
+          description="Enjoy the ultimate streaming experience with cutting-edge technology and premium content."
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((f, i) => <FeatureCard key={i} {...f} />)}
+          {features.map((f, i) => (
+            <ScrollReveal key={i} delay={i * 0.1}>
+              <FeatureCard {...f} />
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>
@@ -280,9 +287,13 @@ function Marquee() {
     <section className="py-20 overflow-hidden border-y border-white/5 bg-zinc-950/50 relative">
        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none" />
        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none" />
-       <div className="text-center mb-12 relative z-20">
-         <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white">Something for <span className="text-brand-cyan">Everyone</span></h2>
-       </div>
+       <SectionHeader
+         badgeText="Our Selection"
+         badgeIcon={<ListVideo className="w-4 h-4" />}
+         title="Something for"
+         gradientTitle="Everyone"
+         centered={true}
+       />
        {renderRow(categories)}
        {renderRow([...categories].reverse(), true)}
     </section>
@@ -333,83 +344,68 @@ function Pricing() {
   return (
     <section id="pricing" className="py-24 relative z-10 bg-zinc-950">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 
-            initial={{opacity:0, y:20}} 
-            whileInView={{opacity:1, y:0}} 
-            viewport={{once:true}} 
-            className="text-4xl lg:text-5xl font-heading font-bold mb-4 text-white"
-          >
-            Choose Your <span className="bg-clip-text text-transparent bg-brand-gradient">zen+ TV Pass</span>
-          </motion.h2>
-          <motion.p 
-            initial={{opacity:0, y:20}} 
-            whileInView={{opacity:1, y:0}} 
-            viewport={{once:true}} 
-            transition={{delay:0.1}} 
-            className="text-lg text-zinc-400 font-body"
-          >
-            Simple, transparent pricing. No hidden fees. Cancel anytime.
-          </motion.p>
-        </div>
+        <SectionHeader
+          badgeText="Pricing Plans"
+          badgeIcon={<CreditCard className="w-4 h-4" />}
+          title="Choose Your"
+          gradientTitle="zen+ TV Pass"
+          description="Simple, transparent pricing. No hidden fees. Cancel anytime."
+        />
 
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6 items-stretch">
           {plans.map((plan, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative rounded-[2rem] p-8 border flex flex-col min-h-[520px] transition-all duration-300 ${
-                plan.highlight
-                  ? "bg-zinc-900/40 border-brand-cyan/50 shadow-[0_0_40px_rgba(0,242,254,0.15)] transform lg:-translate-y-2"
-                  : "bg-zinc-900/40 border-white/5 hover:border-white/10"
-              }`}
-            >
-              {plan.highlight && (
-                <div className="absolute -top-4 inset-x-0 flex justify-center">
-                  <div className="bg-brand-cyan text-zinc-950 text-[11px] font-bold px-5 py-1.5 rounded-full shadow-[0_4px_15px_rgba(0,242,254,0.3)]">
-                    {plan.badge}
-                  </div>
-                </div>
-              )}
-
-              <div className="mb-6">
-                <h3 className="text-2xl font-heading font-bold text-zinc-100">{plan.name}</h3>
-              </div>
-
-              <div className="mb-4">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-6xl font-bold text-white tracking-tight">{plan.price}</span>
-                  <span className="text-zinc-500 text-lg font-medium">/{plan.period}</span>
-                </div>
-                {plan.breakdown && (
-                  <div className="mt-2 text-green-400 text-sm font-semibold">
-                    {plan.breakdown}
-                  </div>
-                )}
-              </div>
-
-              <div className="space-y-4 mb-8 flex-1 mt-6">
-                {plan.features.map((feat, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-sm text-zinc-400 font-body">
-                    <Check className={`w-4 h-4 flex-shrink-0 ${plan.highlight ? 'text-brand-cyan' : 'text-green-500'}`} />
-                    {feat}
-                  </div>
-                ))}
-              </div>
-
-              <button
-                className={`w-full py-4 rounded-full font-heading font-bold transition-all duration-300 ${
+            <ScrollReveal key={i} delay={i * 0.1}>
+              <motion.div
+                className={`relative rounded-[2rem] p-8 border flex flex-col h-full min-h-[520px] transition-all duration-300 ${
                   plan.highlight
-                    ? "bg-brand-gradient text-zinc-950 hover:shadow-[0_0_25px_rgba(0,242,254,0.4)] hover:scale-[1.02]"
-                    : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
+                    ? "bg-zinc-900/40 border-brand-cyan/50 shadow-[0_0_40px_rgba(0,242,254,0.15)] transform lg:-translate-y-2"
+                    : "bg-zinc-900/40 border-white/5 hover:border-white/10"
                 }`}
               >
-                {plan.buttonText}
-              </button>
-            </motion.div>
+                {plan.highlight && (
+                  <div className="absolute -top-4 inset-x-0 flex justify-center">
+                    <div className="bg-brand-cyan text-zinc-950 text-[11px] font-bold px-5 py-1.5 rounded-full shadow-[0_4px_15px_rgba(0,242,254,0.3)]">
+                      {plan.badge}
+                    </div>
+                  </div>
+                )}
+
+                <div className="mb-6">
+                  <h3 className="text-2xl font-heading font-bold text-zinc-100">{plan.name}</h3>
+                </div>
+
+                <div className="mb-4">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-6xl font-bold text-white tracking-tight">{plan.price}</span>
+                    <span className="text-zinc-500 text-lg font-medium">/{plan.period}</span>
+                  </div>
+                  {plan.breakdown && (
+                    <div className="mt-2 text-green-400 text-sm font-semibold">
+                      {plan.breakdown}
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-4 mb-8 flex-1 mt-6">
+                  {plan.features.map((feat, idx) => (
+                    <div key={idx} className="flex items-center gap-3 text-sm text-zinc-400 font-body">
+                      <Check className={`w-4 h-4 flex-shrink-0 ${plan.highlight ? 'text-brand-cyan' : 'text-green-500'}`} />
+                      {feat}
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  className={`w-full py-4 rounded-full font-heading font-bold transition-all duration-300 ${
+                    plan.highlight
+                      ? "bg-brand-gradient text-zinc-950 hover:shadow-[0_0_25px_rgba(0,242,254,0.4)] hover:scale-[1.02]"
+                      : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
+                  }`}
+                >
+                  {plan.buttonText}
+                </button>
+              </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
@@ -449,31 +445,27 @@ function SetupGuide() {
     <section className="py-24 relative bg-zinc-950">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-brand-cyan/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-4xl lg:text-5xl font-heading font-bold mb-4 text-white">
-            Setup in <span className="bg-clip-text text-transparent bg-brand-gradient">Under 5 Minutes</span>
-          </motion.h2>
-          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-zinc-400 text-lg font-body font-medium">
-            Removing the technical friction for new buyers.
-          </motion.p>
-        </div>
+        <SectionHeader
+          badgeText="How It Works"
+          badgeIcon={<PlayCircle className="w-4 h-4" />}
+          title="Setup in"
+          gradientTitle="Under 5 Minutes"
+          description="Removing the technical friction for new buyers."
+        />
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {steps.map((step, i) => (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              key={step.num} 
-              className="bg-zinc-900/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center flex flex-col items-center hover:-translate-y-2 hover:bg-zinc-900/60 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 group"
-            >
-              <div className={`w-16 h-16 rounded-full border-2 ${step.ring} flex items-center justify-center mb-8 bg-zinc-950/50 group-hover:scale-110 transition-transform duration-300`}>
-                {step.icon}
+            <ScrollReveal key={step.num} delay={i * 0.1}>
+              <div 
+                className="bg-zinc-900/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center flex flex-col items-center hover:-translate-y-2 hover:bg-zinc-900/60 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 group h-full"
+              >
+                <div className={`w-16 h-16 rounded-full border-2 ${step.ring} flex items-center justify-center mb-8 bg-zinc-950/50 group-hover:scale-110 transition-transform duration-300`}>
+                  {step.icon}
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                <p className="text-zinc-400 font-body text-sm leading-relaxed">{step.desc}</p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-              <p className="text-zinc-400 font-body text-sm leading-relaxed">{step.desc}</p>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
@@ -498,32 +490,38 @@ function FAQ() {
   return (
     <section className="py-24 relative bg-zinc-950">
       <div className="container mx-auto px-6 max-w-3xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-heading font-bold mb-6 text-white">Got Questions? <br/>We've Got <span className="text-brand-purple">Answers.</span></h2>
-        </div>
+        <SectionHeader
+          badgeText="Support & FAQ"
+          badgeIcon={<HelpCircle className="w-4 h-4" />}
+          title="Got Questions?"
+          gradientTitle="We've Got Answers."
+          centered={true}
+        />
         <div className="space-y-4">
           {faqs.map((faq, idx) => (
-            <div key={idx} className="border border-white/10 rounded-2xl bg-zinc-900/30 overflow-hidden backdrop-blur-sm transition-colors hover:bg-zinc-900/50">
-              <button 
-                className="w-full px-6 py-6 text-left flex items-center justify-between font-bold text-lg focus:outline-none text-white"
-                onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-              >
-                {faq.q}
-                <ChevronDown className={cn("w-5 h-5 text-brand-cyan transition-transform duration-300", openIdx === idx && "rotate-180")} />
-              </button>
-              <AnimatePresence>
-                {openIdx === idx && (
-                  <motion.div 
-                    initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 pb-6 text-zinc-400 leading-relaxed border-t border-white/5 pt-4 font-body">
-                      {faq.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+            <ScrollReveal key={idx} delay={idx * 0.1} direction="up">
+              <div className="border border-white/10 rounded-2xl bg-zinc-900/30 overflow-hidden backdrop-blur-sm transition-colors hover:bg-zinc-900/50">
+                <button 
+                  className="w-full px-6 py-6 text-left flex items-center justify-between font-bold text-lg focus:outline-none text-white"
+                  onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
+                >
+                  {faq.q}
+                  <ChevronDown className={cn("w-5 h-5 text-brand-cyan transition-transform duration-300", openIdx === idx && "rotate-180")} />
+                </button>
+                <AnimatePresence>
+                  {openIdx === idx && (
+                    <motion.div 
+                      initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 text-zinc-400 leading-relaxed border-t border-white/5 pt-4 font-body">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

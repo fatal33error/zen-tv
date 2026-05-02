@@ -23,6 +23,7 @@ const config: Config = {
       },
       backgroundImage: {
         'brand-gradient': 'linear-gradient(to right, #00f2fe, #4facfe)',
+        'animated-gradient': 'linear-gradient(270deg, #00f2fe, #4facfe, #00f2fe)',
         'radial-glow': 'radial-gradient(circle at center, rgba(0,242,254,0.15) 0%, rgba(10,10,10,0) 70%)',
       },
       animation: {
@@ -34,6 +35,7 @@ const config: Config = {
         'float-delayed': 'float 6s ease-in-out 3s infinite',
         'spin-slow': 'spin 4s linear infinite',
         'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+        'gradient-x': 'gradient-x 6s ease infinite',
       },
       keyframes: {
         scroll: {
@@ -59,7 +61,17 @@ const config: Config = {
         'pulse-glow': {
           '0%, 100%': { boxShadow: '0 0 15px rgba(0,242,254,0.1)', borderColor: 'rgba(0,242,254,0.1)' },
           '50%': { boxShadow: '0 0 30px rgba(0,242,254,0.3)', borderColor: 'rgba(0,242,254,0.4)' },
-        }
+        },
+        'gradient-x': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
+        },
       },
     },
   },

@@ -23,6 +23,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [mobileOpen]);
+
   const links = [
     { name: 'Pricing', path: '/pricing' },
     { name: 'Channels', path: '/channels' },
@@ -36,13 +45,13 @@ export default function Navbar() {
     <div className="flex justify-center w-full">
       <header className={cn(
         "fixed z-50 transition-all duration-500 left-1/2 -translate-x-1/2", 
-        scrolled 
+        (scrolled && !mobileOpen)
           ? "top-4 w-[95%] lg:w-4/5 bg-zinc-900/60 backdrop-blur-2xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-full py-3" 
           : "top-0 w-full bg-transparent py-6"
       )}>
         <div className="w-full px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1 cursor-pointer select-none">
+          <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-1 cursor-pointer select-none">
             <img src="/logo.svg" alt="zen+ TV" className="h-8 lg:h-10 object-contain" />
           </Link>
         
@@ -88,6 +97,7 @@ export default function Navbar() {
            {mobileOpen ? <X /> : <Menu />}
         </button>
       </div>
+      </header>
 
       {/* Mobile Drawer */}
       <AnimatePresence>
@@ -107,7 +117,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-      </header>
     </div>
   );
 }
